@@ -1,4 +1,12 @@
 import cv2
+import os
+import time
+
+# Specify the path to the alert sound file
+sound_file = 'sounds/beep.mp3'  # Replace with the actual path to your sound file
+
+
+
 eye_cascPath = './haarcascade_eye_tree_eyeglasses.xml'  #eye detect model
 face_cascPath = './haarcascade_frontalface_alt.xml'  #face detect model
 faceCascade = cv2.CascadeClassifier(face_cascPath)
@@ -56,4 +64,7 @@ while 1:
             #print(count)
             if ( count%TOLERENCE == 0 and sum(arr[count-TOLERENCE:count]) == 0 ):
                 print("Vous vous endormez!!")
+                # Play the alert sound
+                os.system(f'paplay {sound_file}')
+                time.sleep(1)  # Pause for 1 second after playing the sound
                 #beepy.beep("coin")
